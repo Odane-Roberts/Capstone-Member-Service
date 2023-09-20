@@ -1,0 +1,25 @@
+
+spring:
+  application:
+    name: member-service
+    config:
+      bag-url: http://localhost:8093/api/v1/**
+      book-url: http://localhost:8090/api/v1/book
+  config:
+    import: configserver:http://config-server:8888
+
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/capstone
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+
+keycloak:
+  auth-server-url: http://keycloak:8080/auth
+  resource: capstone-api
+  realm: capstone
+  use-resource-role-mappings: true
+  bearer-only: true
