@@ -1,0 +1,12 @@
+  member-service:
+    build:
+      context: ./member-service
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8092"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
